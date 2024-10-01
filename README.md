@@ -37,4 +37,62 @@ To get started with the Hospital Management System, follow these steps:
 git clone https://github.com/amitdighe1397/Hospital-Managment-System.git
 cd hospital-management-system
 CREATE DATABASE hospital_management;
+CREATE TABLE `appointment` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `user_id` int NOT NULL,
+  `fullname` varchar(45) NOT NULL,
+  `gender` varchar(45) NOT NULL,
+  `age` varchar(45) NOT NULL,
+  `appoinDate` varchar(45) NOT NULL,
+  `email` varchar(45) NOT NULL,
+  `phNo` varchar(45) NOT NULL,
+  `diseases` varchar(45) NOT NULL,
+  `doctorId` int NOT NULL,
+  `address` varchar(45) NOT NULL,
+  `status` varchar(45) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `uid_idx` (`user_id`),
+  KEY `did_idx` (`doctorId`),
+  CONSTRAINT `did` FOREIGN KEY (`doctorId`) REFERENCES `doctor` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `uid` FOREIGN KEY (`user_id`) REFERENCES `user_dtls` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE `doctor` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `fullname` varchar(45) NOT NULL,
+  `dob` varchar(45) NOT NULL,
+  `quoli` varchar(45) NOT NULL,
+  `spec` varchar(45) NOT NULL,
+  `email` varchar(45) NOT NULL,
+  `mobno` varchar(45) NOT NULL,
+  `password` varchar(45) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE `specialist` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `spec_name` varchar(45) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE `student` (
+  `id` bigint NOT NULL,
+  `address` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `prn` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE `user_dtls` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `full_name` varchar(45) DEFAULT NULL,
+  `email` varchar(45) DEFAULT NULL,
+  `password` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE `student_seq` (
+  `next_val` bigint DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
